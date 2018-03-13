@@ -146,8 +146,8 @@ namespace fnc.fnc
         public override float Eval(float i_x, float i_y, float i_t)
         {
             double angle = i_t * m_second.Eval(i_x, i_x, i_t) * Math.PI;
-            float y = (float)Math.Sin(angle);
-            float x = (float)Math.Cos(angle);
+            float y = (float)Math.Sin(angle) * 10;
+            float x = (float)Math.Cos(angle) * 10;
             float rx = i_x * x - i_y * y;
             float ry = i_x * y + i_y * x;
             float result = m_first.Eval(rx, ry, i_t);
@@ -184,7 +184,7 @@ namespace fnc.fnc
 
         public override float Eval(float i_x, float i_y, float i_t)
         {
-            float factor = i_t * m_second.Eval(i_x, i_x, i_t);
+            float factor = 10 * i_t * m_second.Eval(i_x, i_x, i_t);
             float rx = i_x * lerp(factor, 1, m_scaleX) + m_deltaX * factor;
             float ry = i_y * lerp(factor, 1, m_scaleY) * factor + m_deltaY * factor;
             float result = m_first.Eval(rx, ry, i_t);
@@ -371,7 +371,6 @@ namespace fnc.fnc
             base.Update(i_dt);
 
             m_time += i_dt;
-
             
             Rotation = Matrix4x4.CreateFromAxisAngle(m_axis, 0.2f * m_time * (float)Math.PI);
             Translation = Vector3.Transform(m_offset * (0.2f * m_time - 1.0f), Rotation);

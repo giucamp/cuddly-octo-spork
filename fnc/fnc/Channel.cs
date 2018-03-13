@@ -84,7 +84,7 @@ namespace fnc.fnc
                     (float)(i_rand.NextDouble()),
                     (float)(i_rand.NextDouble())); */
                 
-                m_value_2 = Vector3.One - m_value_1;
+                m_value_2 = m_value_1 / 6;
                 if (m_3dPlane)
                 {
                     m_express = ExperessionMaker.Make(i_rand, 3);
